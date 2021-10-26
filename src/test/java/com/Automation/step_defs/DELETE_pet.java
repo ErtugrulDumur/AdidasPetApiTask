@@ -3,6 +3,7 @@ package com.Automation.step_defs;
 import com.Automation.utils.ConfigurationReader;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -21,9 +22,10 @@ public class DELETE_pet {
 
         System.out.println("Pet is deleted");
 
-        response = given().pathParam("id", petId)
+        ValidatableResponse response2 = given().pathParam("id", petId)
                 .and().header("api_key","special-key")
-                .when().delete(ConfigurationReader.get("baseurl_petstore") + "/pet/{id}");
+                .when().delete(ConfigurationReader.get("baseurl_petstore") + "/pet/{id}")
+                .then().assertThat().statusCode(404);
 
         assertEquals(404, response.statusCode());
 

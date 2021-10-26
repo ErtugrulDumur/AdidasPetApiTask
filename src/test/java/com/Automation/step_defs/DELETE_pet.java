@@ -21,6 +21,12 @@ public class DELETE_pet {
 
         System.out.println("Pet is deleted");
 
+        response = given().pathParam("id", petId)
+                .and().header("api_key","special-key")
+                .when().delete(ConfigurationReader.get("baseurl_petstore") + "/pet/{id}");
+
+        assertEquals(404, response.statusCode());
+
     }
 
 }

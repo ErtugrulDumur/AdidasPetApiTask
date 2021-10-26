@@ -85,12 +85,12 @@ public class GET_availablePets_verify {
         }
 
         response = given().accept(ContentType.JSON)
-                .pathParam("petId","23")
+                .pathParam("petId","626262")
                 .when().get(ConfigurationReader.get("baseurl_petstore") + "/pet/{petId}");
         PetBody pet1 = response.body().as(PetBody.class);
         System.out.println("pet1 Object = " + pet1.toString());
-        assertEquals("doggie",pet1.getName());
-        assertEquals(23,pet1.getId());
+        assertEquals("yohan_pet",pet1.getName());
+        assertEquals(626262,pet1.getId());
 
         Gson gson = new Gson();
         PetBody petBodyMeta = gson.fromJson(response.body().asString(),PetBody.class);

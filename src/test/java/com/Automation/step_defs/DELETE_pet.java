@@ -27,8 +27,6 @@ public class DELETE_pet {
                 .when().delete(ConfigurationReader.get("baseurl_petstore") + "/pet/{id}")
                 .then().assertThat().statusCode(404);
 
-        assertEquals(404, response2.statusCode());
-
     }
 
 }
